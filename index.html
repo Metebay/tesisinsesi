@@ -30,7 +30,7 @@
         <div class="container mx-auto px-4 py-3 flex justify-between items-center">
             <div class="flex items-center space-x-4">
                 <button class="lg:hidden text-gray-600">
-                    <svg xmlns="Gemini_Generated_Image_s2ak06s2ak06s2ak.png" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                     </svg>
                 </button>
@@ -101,19 +101,16 @@
                 </div>
             </div>
 
-            <!-- HABER GÖRSELİ BAŞLANGIÇ - BURAYA KENDİ GÖRSEL URL'NİZİ EKLEYİN -->
-            <div class="relative w-full aspect-video bg-gray-200 rounded-xl overflow-hidden mb-8 group shadow-lg flex items-center justify-center border-2 border-dashed border-gray-400">
-                <!-- img etiketinin src kısmına kendi resim linkinizi koyabilirsiniz -->
-                <img src="" alt="Haber Görseli Buraya Gelecek" class="hidden w-full h-full object-cover" id="mainNewsImage">
-                <div class="text-gray-500 flex flex-col items-center p-4">
-                    <svg xmlns="Gemini_Generated_Image_s2ak06s2ak06s2ak.png" class="h-12 w-12 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <!-- HABER GÖRSELİ -->
+            <div class="relative w-full aspect-video bg-gray-200 rounded-xl overflow-hidden mb-8 group shadow-lg flex items-center justify-center">
+                <img src="Gemini_Generated_Image_s2ak06s2ak06s2ak.png" alt="Adnan T.T. Cenazede" class="w-full h-full object-cover" id="mainNewsImage">
+                <div id="imagePlaceholder" class="hidden text-gray-500 flex flex-col items-center p-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                     </svg>
-                    <span class="font-bold text-center">Resmi Ben Koyarım (Görsel Alanı)</span>
-                    <span class="text-xs mt-1 italic text-center text-gray-400">Görsel eklemek için kodda src="" kısmını düzenleyin.</span>
+                    <span class="font-bold text-center">Görsel Yüklenemedi</span>
                 </div>
             </div>
-            <!-- HABER GÖRSELİ BİTİŞ -->
 
             <div class="prose prose-lg max-w-none text-gray-800 leading-relaxed space-y-6">
                 <p class="text-xl font-bold italic border-l-4 border-red-600 pl-4 py-2 bg-red-50">
@@ -229,11 +226,20 @@
     </footer>
 
     <script>
-        // Eğer src eklenirse resmi görünür yapmak için küçük bir kontrol
         const img = document.getElementById('mainNewsImage');
-        if(img.getAttribute('src')) {
-            img.classList.remove('hidden');
-            img.nextElementSibling.classList.add('hidden');
+        const placeholder = document.getElementById('imagePlaceholder');
+        
+        // Resim yüklenemezse placeholder'ı göster
+        img.onerror = function() {
+            img.classList.add('hidden');
+            placeholder.classList.remove('hidden');
+        };
+
+        // Resim başarıyla yüklenirse (veya zaten yüklüyse)
+        if (img.complete) {
+            if (img.naturalWidth === 0) {
+                img.onerror();
+            }
         }
     </script>
 
