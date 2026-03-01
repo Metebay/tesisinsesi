@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tesis'in Sesi | Haber Portalı</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9fa;
+        }
+        .news-gradient {
+            background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.8) 100%);
+        }
+        .breaking-news-anim {
+            animation: slide 20s linear infinite;
+        }
+        @keyframes slide {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+    </style>
+</head>
+<body class="text-gray-900">
+
+    <!-- Üst Bar -->
+    <header class="bg-white border-b sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-4">
+                <button class="lg:hidden text-gray-600">
+                    <svg xmlns="Gemini_Generated_Image_s2ak06s2ak06s2ak.png" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+                <div class="text-3xl font-extrabold tracking-tighter text-red-600">
+                    TESİS'İN <span class="text-gray-900">SESİ</span>
+                </div>
+            </div>
+            
+            <nav class="hidden lg:flex space-x-6 font-semibold text-sm uppercase tracking-wide">
+                <a href="#" class="hover:text-red-600 transition">GÜNDEM</a>
+                <a href="#" class="text-red-600 border-b-2 border-red-600">YAŞAM</a>
+                <a href="#" class="hover:text-red-600 transition">YEREL</a>
+                <a href="#" class="hover:text-red-600 transition">EKONOMİ</a>
+                <a href="#" class="hover:text-red-600 transition">SPOR</a>
+            </nav>
+
+            <div class="flex items-center space-x-4">
+                <span class="hidden md:block text-xs text-gray-500 font-medium uppercase">1 MART 2026, PAZAR</span>
+                <button class="bg-gray-100 p-2 rounded-full hover:bg-gray-200 transition">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Son Dakika Bandı -->
+    <div class="bg-black text-white py-2 overflow-hidden relative h-10 flex items-center">
+        <div class="absolute left-0 bg-red-600 h-full px-4 flex items-center font-bold text-xs z-10 skew-x-[-15deg] -ml-2">
+            <span class="skew-x-[15deg]">SON DAKİKA</span>
+        </div>
+        <div class="breaking-news-anim whitespace-nowrap pl-32 text-sm font-medium">
+            Gaziantep'te pes dedirten olay! Adnan T.T. dayısının cenazesine sedye ile katıldı... Hava durumu: Bölgede güneşli bir pazar günü bekleniyor... Piyasalar: Altın fiyatları yeni haftaya sakin başladı...
+        </div>
+    </div>
+
+    <!-- Ana İçerik -->
+    <main class="container mx-auto px-4 py-8 lg:flex lg:space-x-8">
+        
+        <!-- Sol Kolon: Haber Detayı -->
+        <article class="lg:w-2/3">
+            <nav class="flex text-xs text-gray-500 mb-4 font-medium uppercase tracking-wider">
+                <a href="#" class="hover:text-red-600">ANASAYFA</a>
+                <span class="mx-2">/</span>
+                <a href="#" class="hover:text-red-600">YAŞAM</a>
+                <span class="mx-2">/</span>
+                <span class="text-gray-900">GAZİANTEP</span>
+            </nav>
+
+            <h1 class="text-4xl md:text-5xl font-extrabold leading-tight mb-6 text-gray-900">
+                Ayağı Kırık, Dayısının Cenazesine Sedye İle Gitti! Gaziantepli Vatandaştan Pes Dedirten Hareket
+            </h1>
+
+            <div class="flex items-center space-x-4 mb-8 pb-8 border-b border-gray-200 text-sm">
+                <div class="w-10 h-10 bg-red-600 rounded-full flex items-center justify-center text-white font-bold">TS</div>
+                <div>
+                    <div class="font-bold text-gray-800">Tesis'in Sesi Özel Haber</div>
+                    <div class="text-gray-500">Yayınlanma: 01 Mart 2026 - 10:45</div>
+                </div>
+                <div class="flex-grow flex justify-end space-x-2">
+                    <button class="bg-blue-600 text-white p-2 rounded-md hover:opacity-90 transition">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.469h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.469h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                    </button>
+                    <button class="bg-sky-400 text-white p-2 rounded-md hover:opacity-90 transition">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.84 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/></svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- HABER GÖRSELİ BAŞLANGIÇ - BURAYA KENDİ GÖRSEL URL'NİZİ EKLEYİN -->
+            <div class="relative w-full aspect-video bg-gray-200 rounded-xl overflow-hidden mb-8 group shadow-lg flex items-center justify-center border-2 border-dashed border-gray-400">
+                <!-- img etiketinin src kısmına kendi resim linkinizi koyabilirsiniz -->
+                <img src="" alt="Haber Görseli Buraya Gelecek" class="hidden w-full h-full object-cover" id="mainNewsImage">
+                <div class="text-gray-500 flex flex-col items-center p-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    </svg>
+                    <span class="font-bold text-center">Resmi Ben Koyarım (Görsel Alanı)</span>
+                    <span class="text-xs mt-1 italic text-center text-gray-400">Görsel eklemek için kodda src="" kısmını düzenleyin.</span>
+                </div>
+            </div>
+            <!-- HABER GÖRSELİ BİTİŞ -->
+
+            <div class="prose prose-lg max-w-none text-gray-800 leading-relaxed space-y-6">
+                <p class="text-xl font-bold italic border-l-4 border-red-600 pl-4 py-2 bg-red-50">
+                    Gaziantep'te, ayağındaki kırık nedeniyle hareket edemeyen Adnan T.T. isimli vatandaş, dayısının cenazesine katılmak için alışılmadık bir yol seçti. 
+                </p>
+
+                <p>
+                    Kırık bacağını alçıya alan Adnan T.T., cenaze namazının kılınacağı camiye sedye ile getirildi. Cami bahçesine sedye ile giren Adnan T.T., görenleri adeta şaşkına çevirdi. 
+                </p>
+
+                <div class="bg-gray-100 p-6 rounded-lg my-8 border-l-8 border-gray-400">
+                    <h3 class="font-bold text-gray-900 mb-2 uppercase text-sm tracking-widest">Cemaat Şaşkınlığını Gizleyemedi</h3>
+                    <p class="mb-0">Cemaatin şaşkın bakışları arasında sedye üzerinde cenaze namazını kılan Adnan T.T., daha sonra aynı şekilde mezarlığa götürüldü. Vatandaşlar bu anları cep telefonlarıyla kaydetti.</p>
+                </div>
+
+                <p>
+                    Adnan T.T.'nin bu davranışı sosyal medyada ve çevre sakinleri arasında ikiye bölündü. Bazı vatandaşlar bu hareketi büyük bir "vefa ve sevgi örneği" olarak nitelendirirken, kimileri ise durumun abartılı ve tıbbi açıdan riskli olduğunu savundu.
+                </p>
+
+                <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">"Dayım İçin Değerdi"</h2>
+                
+                <p>
+                    Yaşanan olayın ardından kısa bir açıklama yapan Adnan T.T., dayısına olan bağlılığını şu sözlerle ifade etti:
+                </p>
+
+                <blockquote class="bg-red-50 p-8 rounded-xl relative">
+                    <svg class="absolute top-4 left-4 w-8 h-8 text-red-200" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
+                    <p class="text-2xl font-semibold text-red-900 italic">"Ayağım kırık olsa da dayımı yalnız bırakmak istemedim. Sedye ile gelmek biraz zor oldu ama dayım için buna değerdi."</p>
+                </blockquote>
+
+                <div class="flex flex-wrap gap-2 mt-12 pt-8 border-t">
+                    <span class="bg-gray-200 px-3 py-1 rounded-full text-xs font-bold text-gray-600">#Gaziantep</span>
+                    <span class="bg-gray-200 px-3 py-1 rounded-full text-xs font-bold text-gray-600">#CenazeHaberleri</span>
+                    <span class="bg-gray-200 px-3 py-1 rounded-full text-xs font-bold text-gray-600">#Vefa</span>
+                    <span class="bg-gray-200 px-3 py-1 rounded-full text-xs font-bold text-gray-600">#Sedye</span>
+                </div>
+            </div>
+        </article>
+
+        <!-- Sağ Kolon: Sidebar -->
+        <aside class="lg:w-1/3 mt-12 lg:mt-0 space-y-8">
+            
+            <!-- Popüler Haberler -->
+            <div class="bg-white p-6 rounded-xl border shadow-sm">
+                <h3 class="text-lg font-bold border-b-2 border-red-600 inline-block mb-6 uppercase tracking-tight">EN ÇOK OKUNANLAR</h3>
+                <div class="space-y-4">
+                    <div class="flex space-x-3 group cursor-pointer">
+                        <span class="text-3xl font-black text-gray-200 group-hover:text-red-600 transition">01</span>
+                        <p class="text-sm font-bold leading-snug group-hover:text-red-600 transition">Gaziantep'te su kesintisi yapılacak mahalleler listesi yayınlandı.</p>
+                    </div>
+                    <div class="flex space-x-3 group cursor-pointer border-t pt-4">
+                        <span class="text-3xl font-black text-gray-200 group-hover:text-red-600 transition">02</span>
+                        <p class="text-sm font-bold leading-snug group-hover:text-red-600 transition">Büyükşehir Belediyesi'nden yeni toplu taşıma hamlesi.</p>
+                    </div>
+                    <div class="flex space-x-3 group cursor-pointer border-t pt-4">
+                        <span class="text-3xl font-black text-gray-200 group-hover:text-red-600 transition">03</span>
+                        <p class="text-sm font-bold leading-snug group-hover:text-red-600 transition">Gastronomi kenti Gaziantep'te festivaller başlıyor.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Reklam Alanı -->
+            <div class="bg-gray-200 h-64 rounded-xl flex items-center justify-center border-2 border-dashed border-gray-400 text-gray-500 font-bold text-sm text-center px-4">
+                REKLAM ALANI<br>(300 x 250)
+            </div>
+
+            <!-- Bülten Kayıt -->
+            <div class="bg-red-600 p-8 rounded-xl text-white">
+                <h3 class="text-xl font-bold mb-2 uppercase">BÜLTENE KAYDOL</h3>
+                <p class="text-xs opacity-80 mb-4 font-medium uppercase tracking-wider">Haberler cebine gelsin!</p>
+                <input type="email" placeholder="E-posta adresiniz" class="w-full p-3 rounded-lg text-gray-900 text-sm mb-3">
+                <button class="w-full bg-black text-white font-bold py-3 rounded-lg hover:bg-gray-900 transition text-sm">GÖNDER</button>
+            </div>
+
+        </aside>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white mt-16 pt-16 pb-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12 border-b border-gray-800 pb-12">
+                <div class="col-span-1 md:col-span-2">
+                    <div class="text-3xl font-extrabold tracking-tighter text-red-600 mb-6">
+                        TESİS'İN <span class="text-white">SESİ</span>
+                    </div>
+                    <p class="text-gray-400 text-sm max-w-sm leading-relaxed">
+                        Gaziantep'in en güncel haber portalı. Şehrin nabzını tutan doğru, tarafsız ve hızlı haberciliğin adresi. 1 Mart 2026 bülteninden derlenmiştir.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-6 text-sm uppercase tracking-widest text-red-600">Kategoriler</h4>
+                    <ul class="text-gray-400 text-sm space-y-3">
+                        <li><a href="#" class="hover:text-white transition">Gündem</a></li>
+                        <li><a href="#" class="hover:text-white transition">Yaşam</a></li>
+                        <li><a href="#" class="hover:text-white transition">Ekonomi</a></li>
+                        <li><a href="#" class="hover:text-white transition">Teknoloji</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-6 text-sm uppercase tracking-widest text-red-600">Kurumsal</h4>
+                    <ul class="text-gray-400 text-sm space-y-3">
+                        <li><a href="#" class="hover:text-white transition">Hakkımızda</a></li>
+                        <li><a href="#" class="hover:text-white transition">Künye</a></li>
+                        <li><a href="#" class="hover:text-white transition">İletişim</a></li>
+                        <li><a href="#" class="hover:text-white transition">Reklam</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="text-center text-gray-500 text-xs font-medium uppercase tracking-widest">
+                © 2026 WWW.BAYINDIRDIJITAL.COM.TR | TÜM HAKLARI SAKLIDIR.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Eğer src eklenirse resmi görünür yapmak için küçük bir kontrol
+        const img = document.getElementById('mainNewsImage');
+        if(img.getAttribute('src')) {
+            img.classList.remove('hidden');
+            img.nextElementSibling.classList.add('hidden');
+        }
+    </script>
+
+</body>
+</html>
