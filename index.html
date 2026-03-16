@@ -7,11 +7,11 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700;900&family=Playfair+Display:wght@700;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Playfair+Display:wght@700;900&display=swap');
         
         body {
-            font-family: 'Roboto', sans-serif;
-            background-color: #f8f9fa;
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
         }
         
         .serif-title {
@@ -19,29 +19,22 @@
         }
 
         .breaking-news-ticker {
-            background: #000;
+            background: #cc0000;
             color: #fff;
-            padding: 10px 0;
+            padding: 12px 0;
             overflow: hidden;
             white-space: nowrap;
+            position: relative;
         }
 
         .ticker-move {
             display: inline-block;
-            animation: ticker 35s linear infinite;
+            animation: ticker 40s linear infinite;
         }
 
         @keyframes ticker {
             0% { transform: translateX(100%); }
             100% { transform: translateX(-100%); }
-        }
-
-        .headline-card {
-            transition: all 0.3s ease;
-        }
-
-        .headline-card:hover {
-            transform: translateY(-5px);
         }
 
         .view-hidden {
@@ -50,7 +43,7 @@
 
         .active-view {
             display: block;
-            animation: fadeIn 0.5s ease;
+            animation: fadeIn 0.4s ease-out;
         }
 
         @keyframes fadeIn {
@@ -58,9 +51,13 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        .nav-active {
-            color: #ef4444;
-            border-bottom: 2px solid #ef4444;
+        .news-card {
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .news-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1);
         }
     </style>
 </head>
@@ -68,45 +65,47 @@
 
     <!-- Üst Bilgi Çubuğu -->
     <div class="bg-white border-b hidden md:block">
-        <div class="container mx-auto px-4 py-2 flex justify-between items-center text-[10px] font-bold text-slate-500 uppercase tracking-widest">
+        <div class="container mx-auto px-4 py-2 flex justify-between items-center text-[11px] font-bold text-slate-500 uppercase tracking-wider">
             <div class="flex space-x-6">
-                <span><i class="fa-solid fa-calendar-days text-red-600 mr-1"></i> 1 Mart 2026, Pazar</span>
-                <span><i class="fa-solid fa-location-dot text-red-600 mr-1"></i> Gaziantep, TR</span>
+                <span><i class="fa-solid fa-calendar-day text-red-600 mr-1"></i> 16 Mart 2026, Pazartesi</span>
+                <span><i class="fa-solid fa-cloud-bolt text-blue-400 mr-1"></i> Gaziantep 19°C</span>
             </div>
-            <div class="flex space-x-4 italic">
-                <span>Doğru, Tarafsız, Hızlı Habercilik</span>
+            <div class="flex space-x-4">
+                <span class="italic text-red-600 underline underline-offset-2 tracking-tighter uppercase font-black text-[9px]">Manşet: Kavaklık Mahallesi'nde Görülmemiş Olay!</span>
             </div>
         </div>
     </div>
 
     <!-- Header -->
-    <header class="bg-white sticky top-0 z-50 shadow-sm border-b">
-        <div class="container mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center">
-            <div class="cursor-pointer mb-4 md:mb-0" onclick="showView('home')">
-                <h1 class="text-3xl md:text-4xl font-black tracking-tighter text-slate-900 leading-none">
-                    TESİS'İN <span class="text-red-600">SESİ</span>
+    <header class="bg-white sticky top-0 z-50 shadow-md">
+        <div class="container mx-auto px-4 py-4 md:py-6 flex flex-col md:flex-row justify-between items-center">
+            <div class="cursor-pointer mb-4 md:mb-0 group" onclick="showView('home')">
+                <h1 class="text-4xl md:text-5xl font-black tracking-tighter text-slate-900 leading-none uppercase">
+                    TESİS'İN <span class="text-red-600 group-hover:text-red-700 transition">SESİ</span>
                 </h1>
-                <p class="text-[8px] font-bold text-slate-400 tracking-[0.4em] uppercase">Gaziantep'in Haber Merkezi</p>
+                <p class="text-[9px] font-bold text-slate-400 tracking-[0.4em] uppercase">Gaziantep'in Haber Merkezi</p>
             </div>
             
-            <nav class="flex space-x-6 text-xs font-black uppercase tracking-tighter">
-                <a href="javascript:void(0)" onclick="showView('home')" class="hover:text-red-600 transition">ANASAYFA</a>
+            <nav class="flex flex-wrap justify-center gap-6 text-xs font-black uppercase tracking-tight">
+                <a href="javascript:void(0)" onclick="showView('home')" class="text-red-600 hover:text-red-700 transition">ANASAYFA</a>
                 <a href="#" class="hover:text-red-600 transition">GÜNDEM</a>
+                <a href="#" class="hover:text-red-600 transition">SAĞLIK</a>
+                <a href="#" class="hover:text-red-600 transition">YAŞAM</a>
                 <a href="#" class="hover:text-red-600 transition">GASTRONOMİ</a>
-                <a href="#" class="hover:text-red-600 transition">EKONOMİ</a>
-                <a href="#" class="hover:text-red-600 transition">YEREL</a>
+                <a href="#" class="hover:text-red-600 transition">İLETİŞİM</a>
             </nav>
         </div>
     </header>
 
     <!-- Son Dakika Bandı -->
-    <div class="breaking-news-ticker relative flex items-center shadow-inner">
-        <div class="absolute left-0 bg-red-600 h-full px-4 flex items-center font-black italic text-xs z-10">
-            SON DAKİKA
+    <div class="breaking-news-ticker shadow-lg">
+        <div class="absolute left-0 bg-black h-full px-6 flex items-center font-black italic text-xs z-10 skew-x-[-15deg] -ml-3">
+            <span class="skew-x-[15deg]">SON DAKİKA</span>
         </div>
-        <div class="ticker-move text-xs font-bold flex space-x-12">
-            <span>GENEL SEKRETERDEN TESİSE ŞOK BASKIN! TÜM BİRİMLER DENETİM ALTINA ALINDI...</span>
-            <span>GAZİANTEP'TE ŞOK AÇIKLAMA: ADNAN TAHİR ATEŞ BAKIR KAZAN TARTIŞMASINI BAŞLATTI...</span>
+        <div class="ticker-move text-sm font-bold flex space-x-16">
+            <span>FLAŞ: ADNAN T.A. İŞE 'ADNAN İPEKÇİ' OLARAK DÖNDÜ! 3 GÜNLÜK RAPORUN ETKİSİ...</span>
+            <span>GAZİANTEP'TE ŞOK BASKIN: GENEL SEKRETERDEN TESİSE BEKLENMEDİK DENETİM...</span>
+            <span>BAKIR KAZAN TARTIŞMASI: "ÇELİK TENCEREDE PİŞEN NOHUTLU SU SAYILIR"...</span>
             <span>VEFA ÖRNEĞİ: ADNAN T.A. DAYISININ CENAZESİNE SEDYE İLE KATILDI...</span>
         </div>
     </div>
@@ -114,213 +113,178 @@
     <main class="container mx-auto px-4 py-8">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
             
-            <!-- SOL KOLON (İÇERİK) -->
+            <!-- Ana İçerik Alanı -->
             <div class="lg:col-span-8">
                 
                 <!-- ANA SAYFA GÖRÜNÜMÜ -->
                 <div id="home-view" class="active-view space-y-10">
                     
-                    <!-- BU HAFTA (EN ÜSTTE) -->
-                    <section class="bg-white rounded-3xl overflow-hidden shadow-xl border border-slate-100 headline-card">
-                        <div class="bg-slate-900 text-white px-6 py-2 flex justify-between items-center">
-                            <span class="text-xs font-black tracking-widest italic">BU HAFTA</span>
-                            <span class="text-[10px] bg-red-600 px-2 py-0.5 rounded uppercase font-bold">ÖZEL DOSYA</span>
+                    <!-- BU HAFTA (KAS GEVŞETİCİ & İPEKÇİ HABERİ - GÜNCEL RESİMLİ) -->
+                    <section class="bg-white rounded-3xl overflow-hidden shadow-xl border border-slate-100 news-card">
+                        <div class="bg-slate-900 text-white px-8 py-3 flex justify-between items-center">
+                            <h2 class="text-sm font-black tracking-[0.2em] italic uppercase">BU HAFTA</h2>
+                            <span class="text-[10px] bg-red-600 px-3 py-1 rounded-full font-black uppercase">ÖZEL DOSYA</span>
                         </div>
                         <div class="md:flex">
-                            <div class="md:w-1/2">
-                                <img src="file_000000002e887246b97dcaf487804e6b.png" alt="" class="w-full h-full object-cover min-h-[300px]">
+                            <div class="md:w-1/2 overflow-hidden relative">
+                                <img src="Bir başlık ekleyin_20260315_22 1013_0000.png" alt="[Adnan İpekçi Lakabını Alan Adnan T.A. Güncel Görseli]" class="w-full h-full object-cover min-h-[350px] hover:scale-105 transition duration-700">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex flex-col justify-end p-6 md:hidden text-white">
+                                    <h3 class="font-black text-2xl leading-tight">Adnan İpekçi Rüzgarı Esti!</h3>
+                                </div>
                             </div>
-                            <div class="md:w-1/2 p-8 flex flex-col justify-center">
-                                <h2 class="serif-title text-3xl font-black leading-tight mb-4 text-slate-900">
-                                    Adnan Tahir Ateş: “Bakır Kazanda Yapılmayan Kuru Fasulye, <span class="text-red-600">Nohutlu Su Sayılır</span>”
-                                </h2>
-                                <p class="text-slate-500 text-sm mb-6 line-clamp-3">Gaziantep’te gastronomi dünyasını karıştıran açıklama: Ünlü gastronom Ateş, kuru fasulye ve dolmanın sırrını açıkladı.</p>
-                                <button onclick="showView('article-gastronomy')" class="bg-red-600 text-white font-black py-3 px-8 rounded-xl hover:bg-red-700 transition shadow-lg self-start uppercase text-xs tracking-widest">
-                                    HABERİ OKU
+                            <div class="md:w-1/2 p-10 flex flex-col justify-center">
+                                <span class="text-red-600 font-black text-xs uppercase tracking-widest mb-4 italic">Şok Değişim!</span>
+                                <h3 class="serif-title text-3xl md:text-4xl font-black leading-tight mb-6 text-slate-900">
+                                    Fazla Kas Gevşetici İçince <span class="text-red-600">Yüzü Bile Rahatladı!</span>
+                                </h3>
+                                <p class="text-slate-500 text-sm mb-8 leading-relaxed">Kavaklık Aile Sağlığı Merkezi'nden rapor alan Adnan T.A.'nın dönüşü muhteşem oldu. Çalışma arkadaşları şaşkın: "Geri dönen resmen Adnan İpekçi olmuş!"</p>
+                                <button onclick="showView('article-muscle')" class="bg-red-600 text-white font-black py-4 px-10 rounded-2xl hover:bg-red-700 transition shadow-xl self-start uppercase text-xs tracking-widest flex items-center group">
+                                    HABERİ OKU <i class="fa-solid fa-arrow-right ml-3 group-hover:translate-x-2 transition"></i>
                                 </button>
                             </div>
                         </div>
                     </section>
 
-                    <!-- MANŞET ALTI HABERLER -->
+                    <!-- DİĞER HABERLER -->
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                        <!-- Haber 1: Sedye Haberi -->
-                        <div class="bg-white rounded-2xl overflow-hidden shadow-lg headline-card border border-slate-100 flex flex-col">
-                            <div class="relative h-48">
-                                <img src="Gemini_Generated_Image_s2ak06s2ak06s2ak.png" alt="" class="w-full h-full object-cover">
-                                <span class="absolute top-3 left-3 bg-red-600 text-white text-[10px] font-black px-2 py-1 rounded">YAŞAM</span>
+                        <!-- Yemek Haberi -->
+                        <div class="bg-white rounded-3xl overflow-hidden shadow-lg news-card border border-slate-100 flex flex-col">
+                            <div class="relative h-60 overflow-hidden">
+                                <img src="File_000000002e887246b97dcaf487804e6b.png" alt="[Bakır Kazan Kuru Fasulye Görseli]" class="w-full h-full object-cover hover:scale-110 transition duration-700">
+                                <span class="absolute top-4 left-4 bg-red-600 text-white text-[10px] font-black px-3 py-1.5 rounded-lg">GASTRONOMİ</span>
                             </div>
-                            <div class="p-6 flex-grow">
-                                <h3 class="font-black text-xl mb-3 leading-snug hover:text-red-600 transition cursor-pointer" onclick="showView('article-sedye')">
+                            <div class="p-8 flex-grow">
+                                <h4 class="font-black text-xl mb-4 leading-tight hover:text-red-600 transition cursor-pointer uppercase" onclick="showView('article-gastronomy')">
+                                    "Bakır Kazanda Yapılmayan Kuru Fasulye, Nohutlu Su Sayılır"
+                                </h4>
+                                <button onclick="showView('article-gastronomy')" class="text-red-600 font-black text-xs uppercase tracking-widest flex items-center group mt-4">
+                                    DEVAMINI OKU <i class="fa-solid fa-arrow-right ml-2 group-hover:translate-x-1 transition"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Sedye Haberi -->
+                        <div class="bg-white rounded-3xl overflow-hidden shadow-lg news-card border border-slate-100 flex flex-col">
+                            <div class="relative h-60 overflow-hidden">
+                                <img src="Gemini_Generated_Image_s2ak06s2ak06s2ak.png" alt="[Sedye ile Cenazeye Giden Vatandaş Görseli]" class="w-full h-full object-cover hover:scale-110 transition duration-700">
+                                <span class="absolute top-4 left-4 bg-slate-900 text-white text-[10px] font-black px-3 py-1.5 rounded-lg uppercase">VEFA</span>
+                            </div>
+                            <div class="p-8 flex-grow">
+                                <h4 class="font-black text-xl mb-4 leading-tight hover:text-red-600 transition cursor-pointer uppercase" onclick="showView('article-sedye')">
                                     Ayağı Kırık, Dayısının Cenazesine Sedye İle Gitti!
-                                </h3>
-                                <p class="text-slate-500 text-xs mb-4">Gaziantepli vatandaştan pes dedirten vefa örneği cami cemaatini şaşkına çevirdi.</p>
-                                <button onclick="showView('article-sedye')" class="text-red-600 font-black text-[10px] uppercase tracking-widest flex items-center group">
-                                    HABERİ OKU <i class="fa-solid fa-arrow-right ml-2 group-hover:translate-x-1 transition"></i>
-                                </button>
-                            </div>
-                        </div>
-
-                        <!-- Haber 2: Baskın Haberi (Dummy) -->
-                        <div class="bg-white rounded-2xl overflow-hidden shadow-lg headline-card border border-slate-100 flex flex-col">
-                            <div class="relative h-48 bg-slate-100 flex items-center justify-center">
-                                <i class="fa-solid fa-building-shield text-slate-300 text-6xl"></i>
-                                <span class="absolute top-3 left-3 bg-red-600 text-white text-[10px] font-black px-2 py-1 rounded">FLAŞ</span>
-                            </div>
-                            <div class="p-6 flex-grow">
-                                <h3 class="font-black text-xl mb-3 leading-snug">
-                                    Genel Sekreterden Tesise Şok Baskın!
-                                </h3>
-                                <p class="text-slate-500 text-xs mb-4">Sabah saatlerinde gerçekleşen denetimlerde eksiklikler tek tek tespit edildi.</p>
-                                <button class="text-slate-400 font-black text-[10px] uppercase tracking-widest cursor-not-allowed">
-                                    YAKINDA
+                                </h4>
+                                <button onclick="showView('article-sedye')" class="text-red-600 font-black text-xs uppercase tracking-widest flex items-center group mt-4">
+                                    DEVAMINI OKU <i class="fa-solid fa-arrow-right ml-2 group-hover:translate-x-1 transition"></i>
                                 </button>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- HABER DETAY: GASTRONOMİ -->
+                <!-- HABER DETAY: ADNAN İPEKÇİ (GÜNCEL RESİMLİ) -->
+                <div id="article-muscle" class="view-hidden">
+                    <button onclick="showView('home')" class="mb-8 text-slate-500 hover:text-red-600 font-black flex items-center text-xs transition uppercase tracking-widest">
+                        <i class="fa-solid fa-chevron-left mr-2"></i> ANASAYFAYA DÖN
+                    </button>
+                    <article class="bg-white rounded-[2.5rem] p-8 md:p-14 shadow-2xl border border-slate-100">
+                        <header class="mb-10 text-center">
+                            <span class="text-red-600 font-black text-xs uppercase tracking-[0.2em] block mb-4 italic">Kavaklık'ta 3 Günlük Rapor Mucizesi</span>
+                            <h1 class="serif-title text-4xl md:text-6xl font-black mb-8 leading-tight text-slate-900">
+                                Fazla Kas Gevşetici İçince Adamın Yüzü Bile Rahatladı!
+                            </h1>
+                            <p class="text-slate-400 text-[10px] font-black uppercase border-y py-4 inline-block px-12 tracking-widest">
+                                <i class="fa-solid fa-user-edit text-red-600 mr-2"></i> Haber Merkezi — 16 MART 2026
+                            </p>
+                        </header>
+                        
+                        <div class="mb-12 rounded-3xl overflow-hidden shadow-2xl">
+                            <img src="Bir başlık ekleyin_20260315_22 1013_0000.png" class="w-full h-auto object-cover max-h-[550px]">
+                            <div class="bg-slate-900 text-white p-4 text-[10px] font-bold uppercase text-center tracking-widest">
+                                Geri dönen kişi resmen Adnan İpekçi olmuş!
+                            </div>
+                        </div>
+
+                        <div class="prose prose-lg max-w-none text-slate-700 leading-relaxed space-y-8">
+                            <p class="text-2xl font-black text-slate-900 leading-snug">
+                                Kavaklık Mahallesi'nde yaşanan ilginç olay hem mahalle sakinlerini hem de iş arkadaşlarını şaşkına çevirdi. Kas gevşetici mucizesi bir lakap doğurdu.
+                            </p>
+                            
+                            <p>Edinilen bilgilere göre, ayak burkulması şikâyetiyle Kavaklık Aile Sağlığı Merkezi'ne başvuran Adnan T. A., yapılan muayenenin ardından 3 günlük istirahat raporu ve kas gevşetici ilaç reçetesiyle evine gönderildi.</p>
+                            
+                            <p>İddiaya göre istirahat süresinde kas gevşetici ilaçları biraz fazla kaçıran Adnan T. A.'nın görünümünde beklenmedik bir değişim yaşandı. Dinlenme süresinin ardından işe dönmek için Tesis İşletme Müdürlüğü'ne giden Adnan T. A.'yı gören çalışma arkadaşları kısa süreli bir şaşkınlık yaşadı.</p>
+                            
+                            <div class="bg-slate-50 p-10 rounded-3xl border-l-8 border-red-600 my-10 space-y-8">
+                                <div class="flex items-start gap-4">
+                                    <i class="fa-solid fa-quote-left text-red-600 text-4xl opacity-50"></i>
+                                    <p class="text-xl font-bold text-slate-900 italic leading-relaxed">"Kapıdan biri girdi ama biz önce tanıyamadık. Bir baktık Adnan. 'Rapor sana iyi gelmiş ama biraz fazla iyi gelmiş galiba' diye takıldık."</p>
+                                </div>
+                                <div class="flex items-start gap-4">
+                                    <i class="fa-solid fa-quote-left text-slate-300 text-4xl opacity-50"></i>
+                                    <p class="text-xl font-bold text-slate-900 italic leading-relaxed">"Biz ayağını burktu diye biliyorduk ama değişim baştan aşağı olmuş. Kaslar gevşemiş ama tarz da değişmiş."</p>
+                                </div>
+                            </div>
+
+                            <p>Ancak asıl şaşkınlık, Adnan T. A.'nın görünümündeki değişimin bazı çalışanlara ünlü modacı <span class="font-black text-red-600 underline underline-offset-4 decoration-2">Cemil İpekçi'yi</span> hatırlatmasıyla yaşandı. Kurum içinde yapılan espriler ise kısa sürede yeni bir lakabın doğmasına neden oldu.</p>
+                            
+                            <div class="bg-gradient-to-r from-slate-900 to-black text-white p-12 rounded-3xl text-center shadow-2xl">
+                                <h4 class="text-red-500 font-black uppercase text-xs mb-3 tracking-[0.4em]">YENİ LAKAP DOĞDU</h4>
+                                <p class="text-5xl font-black serif-title italic">"ADNAN İPEKÇİ"</p>
+                                <p class="text-[10px] font-bold text-slate-500 mt-6 uppercase tracking-widest">Tesis İşletme Müdürlüğü koridorları bu ismi konuşuyor</p>
+                            </div>
+
+                            <p>Olay kısa sürede kurum içinde konuşulmaya başlanırken bazı çalışanlar durumu "3 günlük rapor mucizesi" olarak nitelendirdi. Sağlık uzmanları ise vatandaşlara kas gevşetici ilaçların doktor tavsiyesine uygun kullanılması gerektiğini hatırlattı.</p>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- DİĞER DETAYLAR (GASTRONOMİ & SEDYE) - BURADA KALMALI -->
                 <div id="article-gastronomy" class="view-hidden">
-                    <button onclick="showView('home')" class="mb-6 text-slate-400 hover:text-red-600 font-bold flex items-center text-xs transition">
-                        <i class="fa-solid fa-arrow-left mr-2"></i> ANASAYFAYA DÖN
+                    <button onclick="showView('home')" class="mb-8 text-slate-500 hover:text-red-600 font-black flex items-center text-xs transition uppercase tracking-widest">
+                        <i class="fa-solid fa-chevron-left mr-2"></i> ANASAYFAYA DÖN
                     </button>
-                    <article class="bg-white rounded-3xl p-8 md:p-12 shadow-2xl">
-                        <span class="text-red-600 font-black text-xs uppercase tracking-widest">BU HAFTA / GASTRONOMİ</span>
-                        <h1 class="serif-title text-4xl md:text-5xl font-black mt-4 mb-8 leading-tight">
-                            Gaziantep’te Şok Açıklama! Adnan Tahir Ateş: “Bakır Kazanda Yapılmayan Kuru Fasulye, Nohutlu Su Sayılır”
-                        </h1>
-                        <img src="file_000000002e887246b97dcaf487804e6b.png" class="w-full h-96 object-cover rounded-2xl mb-8 shadow-lg">
-                        <div class="prose prose-lg max-w-none text-slate-700 leading-relaxed space-y-6">
-                            <p class="text-xl font-bold text-slate-900 border-l-4 border-red-600 pl-4 italic">
-                                Gaziantep’te gastronomi dünyasını karıştıran açıklama, ünlü gastronom Adnan Tahir Ateş’ten geldi.
-                            </p>
-                            <p>Ateş, katıldığı bir sohbet sırasında dolma ve kuru fasulyenin gerçek lezzetinin yalnızca bakır kazanda ortaya çıktığını söyledi.</p>
-                            <blockquote class="bg-slate-50 p-8 rounded-2xl border-l-8 border-red-600 italic font-medium">
-                                "Bakır kazan yemeği dinler, ateşi hisseder. Kuru fasulyeyi çelik tencerede yapanlar aslında fasulyeyi değil, sabırlarını haşlıyor."
-                            </blockquote>
-                            <p>Dolma konusunda da oldukça iddialı konuşan Ateş, “Dolmayı bakır kazanda yaparsanız komşular kapıya gelir. Normal tencerede yaparsanız sadece elektrik faturası gelir” ifadelerini kullandı.</p>
-                            <p>Açıklamanın ardından bazı vatandaşların evlerindeki tencereleri kontrol ettiği, bir vatandaşın ise “Ben yıllardır yanlış fasulye yiyormuşum” diyerek mutfağa gidip bakır kazan aradığı öğrenildi.</p>
-                            <div class="bg-red-50 p-6 rounded-xl border border-red-100">
-                                <h4 class="font-black uppercase text-xs mb-2 text-red-700">Ustalardan Yanıt</h4>
-                                <p class="text-sm italic">“Bakır kazanda pişen dolma sanattır. Diğerleri ise sadece pirinçli sebze denemesidir.”</p>
-                            </div>
+                    <article class="bg-white rounded-[2.5rem] p-8 md:p-14 shadow-2xl border border-slate-100">
+                        <header class="mb-10">
+                            <span class="text-red-600 font-black text-xs uppercase tracking-[0.2em] block mb-4">BU HAFTA / GASTRONOMİ</span>
+                            <h1 class="serif-title text-4xl md:text-5xl font-black mb-8 leading-tight">Bakır Kazanda Yapılmayan Kuru Fasulye, Nohutlu Su Sayılır</h1>
+                        </header>
+                        <img src="File_000000002e887246b97dcaf487804e6b.png" class="w-full h-auto object-cover rounded-3xl mb-12 shadow-xl">
+                        <div class="prose prose-lg max-w-none text-slate-700">
+                            <p>Ünlü gastronom Adnan Tahir Ateş: "Kuru fasulyeyi çelik tencerede yapanlar aslında fasulyeyi değil, sabırlarını haşlıyor. Dolmayı bakır kazanda yaparsanız komşular kapıya gelir" dedi.</p>
                         </div>
                     </article>
                 </div>
 
-                <!-- HABER DETAY: SEDYE -->
                 <div id="article-sedye" class="view-hidden">
-                    <button onclick="showView('home')" class="mb-6 text-slate-400 hover:text-red-600 font-bold flex items-center text-xs transition">
-                        <i class="fa-solid fa-arrow-left mr-2"></i> ANASAYFAYA DÖN
+                    <button onclick="showView('home')" class="mb-8 text-slate-500 hover:text-red-600 font-black flex items-center text-xs transition uppercase tracking-widest">
+                        <i class="fa-solid fa-chevron-left mr-2"></i> ANASAYFAYA DÖN
                     </button>
-                    <article class="bg-white rounded-3xl p-8 md:p-12 shadow-2xl">
-                        <span class="text-red-600 font-black text-xs uppercase tracking-widest">YAŞAM / ÖZEL HABER</span>
-                        <h1 class="serif-title text-4xl md:text-5xl font-black mt-4 mb-8 leading-tight">
-                            Ayağı Kırık, Dayısının Cenazesine Sedye İle Gitti!
-                        </h1>
-                        <img src="Gemini_Generated_Image_s2ak06s2ak06s2ak.png" class="w-full h-96 object-cover rounded-2xl mb-8 shadow-lg">
-                        <div class="prose prose-lg max-w-none text-slate-700 leading-relaxed space-y-6">
-                            <p class="text-xl font-bold text-slate-900 border-l-4 border-red-600 pl-4 italic">
-                                Gaziantep'te, ayağındaki kırık nedeniyle hareket edemeyen Adnan T.A. isimli vatandaş, dayısının cenazesine katılmak için alışılmadık bir yol seçti. 
-                            </p>
-                            <p>Kırık bacağını alçıya alan Adnan T.A., cenaze namazının kılınacağı camiye sedye ile getirildi. Cami bahçesine sedye ile giren Adnan T.A., görenleri adeta şaşkına çevirdi.</p>
-                            <blockquote class="bg-slate-50 p-8 rounded-2xl border-l-8 border-slate-900 italic font-medium">
-                                "Ayağım kırık olsa da dayımı yalnız bırakmak istemedim. Sedye ile gelmek biraz zor oldu ama dayım için buna değerdi."
-                            </blockquote>
-                            <p>Cemaatin şaşkın bakışları arasında sedye üzerinde cenaze namazını kılan Adnan T.A., daha sonra aynı şekilde mezarlığa götürüldü. Adnan T.A.'nin bu davranışı, kimileri tarafından takdirle karşılanırken, kimileri tarafından ise pes dedirtti.</p>
-                        </div>
+                    <article class="bg-white rounded-[2.5rem] p-8 md:p-14 shadow-2xl border border-slate-100">
+                        <header class="mb-10">
+                            <span class="text-red-600 font-black text-xs uppercase tracking-[0.2em] block mb-4">YAŞAM / ÖZEL</span>
+                            <h1 class="serif-title text-4xl md:text-5xl font-black mb-8 leading-tight">Ayağı Kırık, Dayısının Cenazesine Sedye İle Gitti!</h1>
+                        </header>
+                        <img src="Gemini_Generated_Image_s2ak06s2ak06s2ak.png" class="w-full h-auto object-cover rounded-3xl mb-12 shadow-xl">
+                        <p class="text-slate-700 text-lg leading-relaxed">Gaziantep'te, ayağındaki kırık nedeniyle hareket edemeyen Adnan T.A., dayısının cenazesine sedye ile katılarak görenleri şaşkına çevirdi.</p>
                     </article>
                 </div>
 
             </div>
 
-            <!-- SAĞ KOLON (SIDEBAR) -->
-            <aside class="lg:col-span-4 space-y-8">
+            <!-- Sağ Panel -->
+            <aside class="lg:col-span-4 space-y-10">
                 
-                <!-- SPONSORLU REKLAM -->
+                <!-- Sponsor -->
                 <div class="flex flex-col items-center">
-                    <p class="text-[9px] text-slate-400 font-black mb-1 w-[300px] uppercase tracking-[0.2em] text-right">SPONSORLU REKLAM</p>
-                    <div class="w-[300px] h-[250px] bg-white rounded-xl shadow-lg overflow-hidden border border-slate-200 group">
-                        <img src="SAİT ÇELİK.png" alt="" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                    <p class="text-[10px] text-slate-400 font-black mb-2 uppercase tracking-[0.3em] w-full text-right">SPONSORLU REKLAM</p>
+                    <div class="w-[300px] h-[250px] bg-white rounded-2xl shadow-xl overflow-hidden border border-slate-200 group relative">
+                        <img src="REKLAM RESMİ SAİT ÇELİK.png" alt="[Sait Çelik Reklam Görseli]" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
                     </div>
                 </div>
 
-                <!-- TRENDLER -->
-                <div class="bg-white rounded-3xl p-8 shadow-lg border border-slate-100">
-                    <h3 class="text-lg font-black italic uppercase tracking-tighter border-b-4 border-red-600 inline-block mb-6">TREND HABERLER</h3>
-                    <div class="space-y-6">
-                        <div class="flex gap-4 group cursor-pointer" onclick="showView('article-gastronomy')">
-                            <span class="text-3xl font-black text-slate-100 group-hover:text-red-600 transition italic">01</span>
-                            <p class="text-xs font-black leading-tight group-hover:text-red-600 transition">Bakır kazan tartışması: "Çelik tencere sabır haşlar!"</p>
-                        </div>
-                        <div class="flex gap-4 group cursor-pointer border-t pt-6" onclick="showView('article-sedye')">
-                            <span class="text-3xl font-black text-slate-100 group-hover:text-red-600 transition italic">02</span>
-                            <p class="text-xs font-black leading-tight group-hover:text-red-600 transition">Cenazeye sedye ile gelen Gaziantepli vefa örneği.</p>
-                        </div>
-                        <div class="flex gap-4 group cursor-pointer border-t pt-6">
-                            <span class="text-3xl font-black text-slate-100 group-hover:text-red-600 transition italic">03</span>
-                            <p class="text-xs font-black leading-tight group-hover:text-red-600 transition">Genel Sekreterden Tesise şok denetim!</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- BÜLTEN -->
-                <div class="bg-red-600 rounded-[32px] p-8 text-white shadow-xl">
-                    <h4 class="text-xl font-black uppercase tracking-tighter mb-2">BÜLTENE ABONE OL</h4>
-                    <p class="text-[10px] font-bold opacity-80 mb-6 uppercase">Şehrin nabzı e-postanda olsun.</p>
-                    <input type="email" placeholder="E-posta adresiniz" class="w-full p-4 rounded-xl text-slate-900 text-sm mb-4 outline-none">
-                    <button class="w-full bg-slate-900 text-white font-black py-4 rounded-xl shadow-lg hover:bg-black transition uppercase text-[10px] tracking-widest">
-                        KAYDOL
-                    </button>
-                </div>
-
-            </aside>
-        </div>
-    </main>
-
-    <!-- Footer -->
-    <footer class="bg-slate-900 text-white mt-20 pt-16 pb-8">
-        <div class="container mx-auto px-4">
-            <div class="flex flex-col md:flex-row justify-between items-center mb-12 border-b border-slate-800 pb-12">
-                <div class="mb-8 md:mb-0">
-                    <h2 class="text-3xl font-black tracking-tighter">TESİS'İN <span class="text-red-600 italic">SESİ</span></h2>
-                    <p class="text-slate-500 text-xs mt-2 uppercase tracking-widest">Doğru Haber, Gerçek Yorum.</p>
-                </div>
-                <div class="flex space-x-4">
-                    <a href="#" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-red-600 transition"><i class="fa-brands fa-facebook-f"></i></a>
-                    <a href="#" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-red-600 transition"><i class="fa-brands fa-x-twitter"></i></a>
-                    <a href="#" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-red-600 transition"><i class="fa-brands fa-instagram"></i></a>
-                </div>
-            </div>
-            <p class="text-center text-slate-600 text-[10px] font-black uppercase tracking-[0.3em]">
-                © 2026 WWW.BAYINDIRDIJITAL.COM.TR | GAZİANTEP
-            </p>
-        </div>
-    </footer>
-
-    <script>
-        function showView(viewId) {
-            // Tüm görünümleri sakla
-            document.getElementById('home-view').classList.add('view-hidden');
-            document.getElementById('home-view').classList.remove('active-view');
-            
-            document.getElementById('article-gastronomy').classList.add('view-hidden');
-            document.getElementById('article-gastronomy').classList.remove('active-view');
-            
-            document.getElementById('article-sedye').classList.add('view-hidden');
-            document.getElementById('article-sedye').classList.remove('active-view');
-
-            // Seçilen görünümü göster
-            const target = document.getElementById(viewId);
-            target.classList.remove('view-hidden');
-            target.classList.add('active-view');
-
-            // Sayfayı en yukarı kaydır
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-    </script>
-
-</body>
-</html>
-
+                <!-- Trendler -->
+                <div class="bg-white rounded-[2rem] p-8 shadow-xl border border-slate-100">
+                    <h3 class="text-lg font-black italic uppercase tracking-tighter border-b-4 border-red-600 inline-block mb-8 underline decoration-slate-200 decoration-4">GÜNÜN TRENDLERİ</h3>
+                    <div class="space-y-8">
+                        <div class="flex gap-5 group cursor-pointer" onclick="showView('article-muscle')">
+                            <span class="text-4xl font-black text-slate-100 group-hover:text-red-600 transition italic leading-none">01</span>
+                            <p class="text-xs font-black leading-tight group-hover:text-red-
